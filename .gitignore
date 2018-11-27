@@ -33,3 +33,7 @@ inc/
 /MANIFEST.bak
 /pm_to_blib
 /*.zip
+
+# SQLite db
+tcm.db
+.perl_tcm_history.db
