@@ -6,6 +6,7 @@ The object is to test Test::Class::Moose:History with an old T:C:M project
 
 1 Read 'Install.TCMH.txt' on how I installed T:C:M:H on a Ubuntu 18.04
 2 View Ovid's post 'Saving your test suite history'
+    http://blogs.perl.org/users/ovid/2017/03/saving-your-test-suite-history.html
     review $ t/tcm.t :: --report
 3 I could not get 
        my $report = Test::Class::Moose::History::Report->new;
