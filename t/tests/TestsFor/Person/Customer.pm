@@ -38,7 +38,8 @@ sub test_mininum_age : Tags(api) {
     my $test = shift;
     $test->test_report->plan(2);
     my $year = DateTime->now->year;
-#    $year -= 16;
+
+    $year -= 16;
     throws_ok {
         $test->class_name->new(
             {
