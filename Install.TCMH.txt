@@ -1,0 +1,53 @@
+# Ubuntu 18.04
+#  perlbrew installed in /opt
+
+
+  # I stored the repository in my development account
+  # Cause I'll probably want to reference it in the future
+$ mkdir -p ~/Git/Ovid
+$ cd ~/Git/Ovid
+$ git clone https://github.com/Ovid/test-class-moose-history.git
+
+$ su - woot      # woot is my only sudo super-user
+                 # I backup /home/woot
+                 # I don't backup /root
+$ sudo bash      # I want to stay in /home/woot
+
+$ source /opt/perlbrew/etc/bashrc     # point the the correct perl (perlbrew)
+                                      # /opt/perlbrew/perls/perl-5.28.0/bin/perl
+                                      # /usr/bin/perl    # Ubuntu system perl
+
+$ cp -r /home/devel/Git/Ovid/test-class-moose-history  .
+$ cd test-class-moose-history
+$ more README
+  
+$ perl Makefile.PL
+$ cpanm Text::Table::Tiny
+
+$ perl Makefile.PL
+
+$ make
+$ make test
+  # will fail t/tcm.t
+  #   Failed test 'Report results for top_failures should be correct'
+  #
+  # I guess its because I don't have an sqlite DB to compare data with
+
+$ apt-get install sqlite3
+$ apt-get install sqlitebrowser  # I use the browser instead of the CLI
+  # sqlitebrowser does not find T:C:M:H's .perl_tcm_history.db
+  #
+  # T:C:M:H can use  $ export PERL_TCM_HISTORY_DB=MyGroovy.db
+  # OR
+  # my $history = Test::Class::Moose::History->new(
+  #     runner => $runner,
+  #     branch => $branch,
+  #     commit => $commit,
+  #     database_file => 'MyGroovy.db',
+  # );
+
+
+$ make install
+
+$ cpanm DBI   # this is kinda a new laptop since my previous had
+              # wifi card issue

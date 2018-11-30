@@ -1,38 +1,49 @@
-TestClassMoose README 
+TestClassMooseWithHistory README 
 
-Nov 10, 2015 MadMongers Mtg.
-Includes presentation (LibreOffice)
+??A future MadMongers presentation???
 
+The object is to test Test::Class::Moose:History with an old TCM project
 
-   Migrated the previous TestClass project to Test::Class::Moose
-
-      Took Curtis "Ovid" Poe's Test:Class project in Chapter 14 
-      of "Beginning Perl" and merged it with his Test:Class 
-      articles at modernperlbooks.com.
-
-   Read disclaimer(s) in the TestClass project's README.
-
-   Note: In 2016 Test::Class:Moose is still Beta software.
+1 Read 'Install.TCMH.txt' on how I installed T:C:M:H on a Ubuntu 18.04
+2 View Ovid's post 'Saving your test suite history'
+    review $ t/tcm.t :: --report
+3 I could not get 
+       my $report = Test::Class::Moose::History::Report->new;
+       my $failures = $report->last_failures;
+    to work!
+4 Did not know to how code
+       $ prove t/tcm.t :: --failures
+    Is it last_failures and/or top_failures
+5 Create a new argument for t/tcm.t, '--tc', for test_classes argument
+    for T:C:M:Runner
+6 Look at 'prove_it.sh'
+7 If t/tcm.t is not run with   :: --report   it will not put any
+    history into the database
 
 Project Directory
-├── README
-├── Test-Class-Moose-Presentation.odp
 ├── Devel_Cover.sh
-├── prove_it.sh
+├── Install.TCMH.txt
 ├── lib
-│   ├── Customer.pm
-│   ├── Person.pm
-│   └── Person
-│       └── Employee.pm
-└── t
-    ├── run2.t
-    ├── run.t
-    └── tests
-        ├── My
-        │   └── Test
-        │       └── Class.pm
-        └── TestsFor
-            ├── Customer.pm
-            ├── Person.pm
-            └── Person
-                └── Employee.pm
+│   ├── Person
+│   │   ├── Customer.pm
+│   │   └── Employee.pm
+│   └── Person.pm
+├── prove_it.sh
+├── README
+├── t
+│   ├── 02pod.t
+│   ├── 03podcoverage.t
+│   ├── 100-perl-critic.t
+│   ├── 101-tidyall.t
+│   ├── run.t
+│   ├── tcm.t
+│   └── tests
+│       ├── My
+│       │   └── Test
+│       │       └── Class.pm
+│       └── TestsFor
+│           ├── Person
+│           │   ├── Customer.pm
+│           │   └── Employee.pm
+│           └── Person.pm
+└── tcmhr.db

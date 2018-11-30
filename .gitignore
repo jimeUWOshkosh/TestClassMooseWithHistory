@@ -35,5 +35,7 @@ inc/
 /*.zip
 
 # SQLite db
-tcm.db
 .perl_tcm_history.db
+tcmhr.db
+
+.tidyall.d/
