@@ -33,27 +33,28 @@ The object is to test Test::Class::Moose:History with an old T:C:M project
 Project Directory
 ├── Devel_Cover.sh
 ├── Install.TCMH.txt
+├── prove_it.sh
+├── README
+├── tcmhr.pl
 ├── lib
 │   ├── Person
 │   │   ├── Customer.pm
 │   │   └── Employee.pm
 │   └── Person.pm
-├── prove_it.sh
-├── README
-├── t
-│   ├── 02pod.t
-│   ├── 03podcoverage.t
-│   ├── 100-perl-critic.t
-│   ├── 101-tidyall.t
-│   ├── run.t
-│   ├── tcm.t
-│   └── tests
-│       ├── My
-│       │   └── Test
-│       │       └── Class.pm
-│       └── TestsFor
-│           ├── Person
-│           │   ├── Customer.pm
-│           │   └── Employee.pm
-│           └── Person.pm
-└── tcmhr.db
+└──── t
+    ├── 02pod.t
+    ├── 03podcoverage.t
+    ├── 100-perl-critic.t
+    ├── 101-tidyall.t
+    ├── run.t
+    ├── tcm.t
+    └── tests
+        ├── My
+        │   └── Test
+        │       └── Class.pm
+        └── TestsFor
+            ├── Person
+            │   ├── Customer.pm
+            │   └── Employee.pm
+            └── Person.pm
+
