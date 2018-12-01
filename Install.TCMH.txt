@@ -1,6 +1,9 @@
 # Ubuntu 18.04
 #  perlbrew installed in /opt
 
+# This is my notes on how I installed Test::Class::Moose::History
+# from Ovid's repository on 29-Nov-2018.
+# Your mileage may vary!!!!!
 
   # I stored the repository in my development account
   # Cause I'll probably want to reference it in the future
@@ -8,12 +11,12 @@ $ mkdir -p ~/Git/Ovid
 $ cd ~/Git/Ovid
 $ git clone https://github.com/Ovid/test-class-moose-history.git
 
-$ su - woot      # woot is my only sudo super-user
+$ su - woot      # woot is my only sudo super-user account
                  # I backup /home/woot
                  # I don't backup /root
 $ sudo bash      # I want to stay in /home/woot
 
-$ source /opt/perlbrew/etc/bashrc     # point the the correct perl (perlbrew)
+$ source /opt/perlbrew/etc/bashrc     # point to the correct perl (perlbrew)
                                       # /opt/perlbrew/perls/perl-5.28.0/bin/perl
                                       # /usr/bin/perl    # Ubuntu system perl
 
@@ -37,17 +40,14 @@ $ apt-get install sqlite3
 $ apt-get install sqlitebrowser  # I use the browser instead of the CLI
   # sqlitebrowser does not find T:C:M:H's .perl_tcm_history.db
   #
-  # T:C:M:H can use  $ export PERL_TCM_HISTORY_DB=MyGroovy.db
-  # OR
-  # my $history = Test::Class::Moose::History->new(
-  #     runner => $runner,
-  #     branch => $branch,
-  #     commit => $commit,
-  #     database_file => 'MyGroovy.db',
-  # );
+  # use a soft link
+  # ln -s .perl_tcm_history.db  MyGroovy.db
+
+$ cpanm DBI   # if this your first perl DB connection on your system
 
 
 $ make install
 
-$ cpanm DBI   # this is kinda a new laptop since my previous had
-              # wifi card issue
+$ exit           # exit out of sudo
+$ exit           # exit out of switch-user
+
