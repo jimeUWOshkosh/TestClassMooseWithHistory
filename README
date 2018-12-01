@@ -13,9 +13,9 @@ The object is to test Test::Class::Moose:History with an old T:C:M project
     review   $ t/tcm.t :: --report
 
 3 To run against existing data in the database
-    $ perl tcmhr.sh
+    $ perl tcmhr.pl
 
-4 Make an attempt to code
+4 Made an attempt to code
        $ prove t/tcm.t :: --failures
     Ovid >>  will rerun the last set of failing tests rather than the entire test suite.
 
