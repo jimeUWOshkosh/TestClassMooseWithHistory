@@ -5,21 +5,30 @@ TestClassMooseWithHistory README
 The object is to test Test::Class::Moose:History with an old T:C:M project
 
 1 Read 'Install.TCMH.txt' on how I installed T:C:M:H on a Ubuntu 18.04
+
 2 View Ovid's post 'Saving your test suite history'
     http://blogs.perl.org/users/ovid/2017/03/saving-your-test-suite-history.html
-    review $ t/tcm.t :: --report
-3 I could not get 
-       my $report = Test::Class::Moose::History::Report->new;
-       my $failures = $report->last_failures;
-    to work!
-4 Did not know to how code
+    review   $ t/tcm.t :: --report
+
+3 To run against existing data in the database
+    tcmhr.sh
+
+4 Make an attemp to code
        $ prove t/tcm.t :: --failures
-    Is it last_failures and/or top_failures
+    Ovid >>  will rerun the last set of failing tests rather than the entire test suite.
+
+    Does 'last_failures' report to find the test_classes to run again
+
+    Q: Should --failure and --report be able in the same execution???
+
 5 Created a new argument for t/tcm.t, '--tc', for test_classes argument
     for T:C:M:Runner
+
 6 Look at 'prove_it.sh'
-7 If t/tcm.t is not run with   :: --report   it will not put any
-    history into the database
+    plenty of examples of different 'prove's
+
+7 Note: If t/tcm.t is not run with   :: --report   it will NOT put any
+          history into the database
 
 Project Directory
 ├── Devel_Cover.sh

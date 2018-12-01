@@ -1,6 +1,6 @@
 #!perl
 
-# this is Ovid's code. I hack on it for, 1) perlcritic & perltidy 2) test_classes
+# this is Ovid's code. I hack on it for, 1) perlcritic & perltidy 2) test_classes 3) --failures
 use strict;
 use warnings;
 use Test::Builder;
@@ -14,9 +14,21 @@ use Carp 'croak';
 our $VERSION = '0.01';
 
 GetOptions(
-    report => \my $report,
-    'tc=s' => \my @tc_files,
+    report   => \my $report,
+    failures => \my $failures,
+    'tc=s'   => \my @tc_files,
 ) or croak 'Bad options';
+
+if ( ($failures) and ( scalar @tc_files ) ) {
+    croak 'Bad options: You can NOT do Test_Classes and Failures';
+}
+
+if ($failures) {
+    my $report        = Test::Class::Moose::History::Report->new;
+    my $last_failures = $report->last_failures;
+    $report->_dbh->disconnect();
+    @tc_files = give_me_classes($last_failures);
+}
 
 my $runner = Test::Class::Moose::Runner->new(
     statistics   => 1,
@@ -39,10 +51,9 @@ if ($report) {
         $commit = 'fake_commit';
     }
     my $history = Test::Class::Moose::History->new(
-        runner        => $runner,
-        branch        => $branch,
-        commit        => $commit,
-        database_file => 'tcmhr.db',
+        runner => $runner,
+        branch => $branch,
+        commit => $commit,
     );
     $history->save;
     my $report = $history->report;
@@ -60,4 +71,17 @@ if ($report) {
         $builder->diag("\nReport for $method");
         $builder->diag( generate_table( rows => \@rows, header_row => 1 ) );
     }
+}
+
+# Reference of AoA. Give me the 'Class' element of each secondary array
+sub give_me_classes {
+    my $ra_rows = shift;
+    my @classes;
+    for my $ra_r ( @{$ra_rows} ) {
+
+        #     Elements of 'last_failures' header
+        #   last_failures    => [qw/Class Method/],
+        push @classes, $ra_r->[0];
+    }
+    return @classes;
 }
