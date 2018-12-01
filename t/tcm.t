@@ -9,6 +9,7 @@ use Test::Class::Moose::Runner;
 use Test::Class::Moose::History;
 use Text::Table::Tiny 'generate_table';
 use Getopt::Long;
+use List::MoreUtils 'uniq';
 use Carp 'croak';
 
 our $VERSION = '0.01';
@@ -24,13 +25,14 @@ if ( ($failures) and ( scalar @tc_files ) ) {
 }
 
 if ($failures) {
-    my $report        = Test::Class::Moose::History::Report->new;
-    my $last_failures = $report->last_failures;
-    $report->_dbh->disconnect();
+    my $rpt        = Test::Class::Moose::History::Report->new;
+    my $last_failures = $rpt->last_failures;
+    $rpt->_dbh->disconnect();
 
 #   Give me the test_classes in the report
 #        last_failures    => [qw/Class Method/],
-    @tc_files = map { $_->[0] } @$last_failures;
+#   A test_class can have more the one method fail
+    @tc_files = uniq map { $_->[0] } @$last_failures;
 }
 
 my $runner = Test::Class::Moose::Runner->new(
