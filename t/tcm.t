@@ -27,7 +27,10 @@ if ($failures) {
     my $report        = Test::Class::Moose::History::Report->new;
     my $last_failures = $report->last_failures;
     $report->_dbh->disconnect();
-    @tc_files = give_me_classes($last_failures);
+
+#   Give me the test_classes in the report
+#        last_failures    => [qw/Class Method/],
+    @tc_files = map { $_->[0] } @$last_failures;
 }
 
 my $runner = Test::Class::Moose::Runner->new(
@@ -71,17 +74,4 @@ if ($report) {
         $builder->diag("\nReport for $method");
         $builder->diag( generate_table( rows => \@rows, header_row => 1 ) );
     }
-}
-
-# Reference of AoA. Give me the 'Class' element of each secondary array
-sub give_me_classes {
-    my $ra_rows = shift;
-    my @classes;
-    for my $ra_r ( @{$ra_rows} ) {
-
-        #     Elements of 'last_failures' header
-        #   last_failures    => [qw/Class Method/],
-        push @classes, $ra_r->[0];
-    }
-    return @classes;
 }
