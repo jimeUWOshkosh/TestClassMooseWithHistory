@@ -10,7 +10,7 @@ The object is to test Test::Class::Moose:History with an old T:C:M project
 
 2 View Ovid's post 'Saving your test suite history'
     http://blogs.perl.org/users/ovid/2017/03/saving-your-test-suite-history.html
-    review   $ t/tcm.t :: --report
+    review   $ prove t/tcm.t :: --report
 
 3 To run against existing data in the database
     $ perl tcmhr.pl
@@ -19,9 +19,7 @@ The object is to test Test::Class::Moose:History with an old T:C:M project
        $ prove t/tcm.t :: --failures
     Ovid >>  will rerun the last set of failing tests rather than the entire test suite.
 
-    Does 'last_failures' report to find the test_classes to run again
-
-    Q: Should --failure and --report be valid in the same execution???
+    Does a 'last_failures' report to find the test_classes to run again
 
 5 Created a new argument for t/tcm.t, '--tc', for test_classes argument
     for T:C:M:Runner

@@ -20,6 +20,8 @@ $ source /opt/perlbrew/etc/bashrc     # point to the correct perl (perlbrew)
                                       # /opt/perlbrew/perls/perl-5.28.0/bin/perl
                                       # /usr/bin/perl    # Ubuntu system perl
 
+$ mkdir Git
+$ cd Git
 $ cp -r /home/devel/Git/Ovid/test-class-moose-history  .
 $ cd test-class-moose-history
 $ more README
