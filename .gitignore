@@ -39,3 +39,5 @@ inc/
 tcmhr.db
 
 .tidyall.d/
+.perl_tcm_history.db
+tcm.db
